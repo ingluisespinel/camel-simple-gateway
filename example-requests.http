@@ -1,0 +1,25 @@
+### GET WITH QUERY PARAMS
+GET http://127.0.0.1:8080/camel-gateway/objects-service/objects?id=3
+
+### GET WITH PATH PARAM
+GET http://127.0.0.1:8080/camel-gateway/pokemons/pokemon/ditto
+
+### GET TO NOT EXISTING SERVICE
+GET http://127.0.0.1:8080/camel-gateway/pokemonssss/pokemon/ditto
+
+### GET WITH NOT PATH SERVICE
+GET http://127.0.0.1:8080/camel-gateway/pokemons
+
+### POST TO CREATE OBJECT VIA objects-service
+POST http://127.0.0.1:8080/camel-gateway/objects-service/objects
+Content-Type: application/json
+
+{
+  "name": "Camel GAEWAY",
+  "data": {
+    "year": 2019,
+    "price": 1849.99,
+    "CPU model": "Intel Core i9",
+    "Hard disk size": "1 TB"
+  }
+}
