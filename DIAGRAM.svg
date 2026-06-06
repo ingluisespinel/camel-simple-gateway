@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 750" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    <linearGradient id="gatewayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb"/>
+      <stop offset="100%" style="stop-color:#f5576c"/>
+    </linearGradient>
+    <linearGradient id="camelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe"/>
+      <stop offset="100%" style="stop-color:#00f2fe"/>
+    </linearGradient>
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#43e97b"/>
+      <stop offset="100%" style="stop-color:#38f9d7"/>
+    </linearGradient>
+    <linearGradient id="errorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fa709a"/>
+      <stop offset="100%" style="stop-color:#fee140"/>
+    </linearGradient>
+    <linearGradient id="backendGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a18cd1"/>
+      <stop offset="100%" style="stop-color:#fbc2eb"/>
+    </linearGradient>
+    <linearGradient id="responseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2b2d42"/>
+      <stop offset="100%" style="stop-color:#14151f"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1d3557"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2d8a4e"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e63946"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="750" fill="#f8f9fa" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">API Gateway — Flujo de Peticiones (Apache Camel + Spring Boot)</text>
+
+  <!-- ============================================= -->
+  <!-- ROW 1: CLIENT -->
+  <!-- ============================================= -->
+  <rect x="300" y="40" width="200" height="50" rx="10" fill="url(#clientGrad)" filter="url(#shadow)"/>
+  <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">🌐 Cliente</text>
+  <text x="400" y="78" text-anchor="middle" font-size="10" fill="#e8e8e8">HTTP Request</text>
+
+  <!-- Arrow: Client → REST DSL -->
+  <line x1="400" y1="90" x2="400" y2="128" stroke="#1d3557" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- ============================================= -->
+  <!-- ROW 2: REST DSL -->
+  <!-- ============================================= -->
+  <rect x="290" y="130" width="220" height="50" rx="8" fill="url(#gatewayGrad)" filter="url(#shadow)"/>
+  <text x="400" y="152" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">REST DSL</text>
+  <text x="400" y="168" text-anchor="middle" font-size="10" fill="#ffe0e0">/{service}/{*path}</text>
+
+  <!-- Arrow: REST DSL → Process -->
+  <line x1="400" y1="180" x2="400" y2="218" stroke="#1d3557" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- ============================================= -->
+  <!-- ROW 3: PROCESS REQUEST -->
+  <!-- ============================================= -->
+  <rect x="290" y="220" width="220" height="50" rx="8" fill="url(#camelGrad)" filter="url(#shadow)"/>
+  <text x="400" y="242" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">🔄 Process Request</text>
+  <text x="400" y="258" text-anchor="middle" font-size="10" fill="#e0f0ff">direct:processRequest</text>
+
+  <!-- Arrow: Process → Load Config -->
+  <line x1="400" y1="270" x2="400" y2="308" stroke="#1d3557" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- ============================================= -->
+  <!-- ROW 4: LOAD SERVICE CONFIG -->
+  <!-- ============================================= -->
+  <rect x="280" y="310" width="240" height="50" rx="8" fill="url(#camelGrad)" filter="url(#shadow)"/>
+  <text x="400" y="332" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">📋 Load Service Config</text>
+  <text x="400" y="348" text-anchor="middle" font-size="10" fill="#e0f0ff">gatewayConfig.getServiceConfigByName()</text>
+
+  <!-- Arrow: Load Config → Decision -->
+  <line x1="400" y1="360" x2="400" y2="388" stroke="#1d3557" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- ============================================= -->
+  <!-- ROW 5: DECISION DIAMOND -->
+  <!-- ============================================= -->
+  <!-- Diamond center: (400, 420), top: (400, 395), bottom: (400, 445), left: (345, 420), right: (455, 420) -->
+  <polygon points="400,395 455,420 400,445 345,420" fill="#ffd166" stroke="#e6a800" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="417" text-anchor="middle" font-size="11" font-weight="bold" fill="#5a4000">¿Servicio</text>
+  <text x="400" y="432" text-anchor="middle" font-size="11" font-weight="bold" fill="#5a4000">encontrado?</text>
+
+  <!-- ============================================= -->
+  <!-- ROW 6: EXECUTOR (LEFT) & ERROR HANDLER (RIGHT) -->
+  <!-- ============================================= -->
+
+  <!-- YES path: Decision left → Executor top -->
+  <path d="M 345 420 Q 190 420 190 490" stroke="#2d8a4e" stroke-width="2.5" fill="none" marker-end="url(#arrowGreen)"/>
+  <rect x="90" y="490" width="200" height="50" rx="8" fill="url(#successGrad)" filter="url(#shadow)"/>
+  <text x="190" y="512" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">🚀 Execute Request</text>
+  <text x="190" y="528" text-anchor="middle" font-size="10" fill="#2e7d32">direct:executeRequest</text>
+
+  <!-- YES label -->
+  <text x="270" y="435" font-size="12" font-weight="bold" fill="#2d8a4e">SÍ</text>
+
+  <!-- NO path: Decision right → Error Handler top -->
+  <path d="M 455 420 Q 610 420 610 490" stroke="#e63946" stroke-width="2.5" fill="none" marker-end="url(#arrowRed)"/>
+  <rect x="510" y="490" width="200" height="50" rx="8" fill="url(#errorGrad)" filter="url(#shadow)"/>
+  <text x="610" y="512" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">⚠️ Error Handler</text>
+  <text x="610" y="528" text-anchor="middle" font-size="10" fill="#fff5f5">direct:errorHandler</text>
+
+  <!-- NO label -->
+  <text x="530" y="435" font-size="12" font-weight="bold" fill="#e63946">NO</text>
+
+  <!-- ============================================= -->
+  <!-- ROW 7: BACKEND (LEFT) -->
+  <!-- ============================================= -->
+
+  <!-- Arrow: Executor → Backend -->
+  <line x1="190" y1="540" x2="190" y2="578" stroke="#1d3557" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <rect x="80" y="580" width="220" height="50" rx="8" fill="url(#backendGrad)" filter="url(#shadow)"/>
+  <text x="190" y="602" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">📦 Backend Service</text>
+  <text x="190" y="618" text-anchor="middle" font-size="10" fill="#f0e6ff">${header.ServiceConfig.baseUrl}</text>
+
+  <!-- Arrow: Backend → Response -->
+  <path d="M 190 630 Q 190 663 360 663" stroke="#1d3557" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+
+  <!-- ============================================= -->
+  <!-- ROW 7b: ERROR RESPONSE (RIGHT) -->
+  <!-- ============================================= -->
+
+  <!-- Arrow: Error Handler → Response -->
+  <path d="M 610 540 Q 610 663 440 663" stroke="#e63946" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#arrowRed)"/>
+
+  <!-- ============================================= -->
+  <!-- ROW 8: RESPONSE -->
+  <!-- ============================================= -->
+  <rect x="270" y="665" width="260" height="50" rx="10" fill="url(#responseGrad)" filter="url(#shadow)"/>
+  <text x="400" y="687" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">⬅️ Respuesta al Cliente</text>
+  <text x="400" y="703" text-anchor="middle" font-size="10" fill="#ccc">JSON Response · Código HTTP</text>
+
+  <!-- ============================================= -->
+  <!-- LEGEND -->
+  <!-- ============================================= -->
+  <rect x="20" y="640" width="220" height="90" rx="8" fill="#edf2f4" stroke="#ccc" stroke-width="1"/>
+  <text x="35" y="658" font-size="11" font-weight="bold" fill="#333">Leyenda:</text>
+
+  <line x1="35" y1="676" x2="75" y2="676" stroke="#1d3557" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <text x="82" y="680" font-size="10" fill="#555">Flujo normal</text>
+
+  <line x1="35" y1="696" x2="75" y2="696" stroke="#e63946" stroke-width="2.5" marker-end="url(#arrowRed)"/>
+  <text x="82" y="700" font-size="10" fill="#555">Flujo de error</text>
+
+  <line x1="35" y1="716" x2="75" y2="716" stroke="#2d8a4e" stroke-width="2.5"/>
+  <rect x="35" y="708" width="40" height="16" rx="3" fill="url(#successGrad)"/>
+  <text x="82" y="720" font-size="10" fill="#555">Flujo exitoso</text>
+
+</svg>

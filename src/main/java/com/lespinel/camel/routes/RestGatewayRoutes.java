@@ -49,8 +49,9 @@ public class RestGatewayRoutes extends RouteBuilder {
                 .log(LoggingLevel.ERROR, "Exception: ${exception}")
                 .process(exchange -> {
                     var exception = exchange.getProperty(Exchange.EXCEPTION_CAUGHT, Exception.class);
+                    var gatewayError = exchange.getMessage().getHeader("GatewayError", "", String.class);
                     exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, 500);
-                    exchange.getMessage().setBody(Map.of("message", exception.getMessage()));
+                    exchange.getMessage().setBody(Map.of("message", exception.getMessage(), "details", gatewayError));
                 })
                 .marshal().json();
 
